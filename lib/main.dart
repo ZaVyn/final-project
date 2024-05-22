@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_application_1/config/asset.dart';
 import 'package:flutter_application_1/home.dart';
 
@@ -47,11 +49,17 @@ class _LoginPageState extends State<LoginPage> {
                   'assets/logo.png', // Path to your logo asset
                   height: 150, // Adjust the height as needed
                 ),
-                SizedBox(height: 30.0), // Add spacing between logo and form fields
+                SizedBox(height: 50.0), // Add spacing between logo and form fields
                 TextFormField(
                   controller: _usernameController,
                   decoration: InputDecoration(
                     labelText: 'Username',
+                    labelStyle: TextStyle(
+                      color: asset.colorSecondary,
+                    ),
+                    errorStyle: TextStyle(
+                      color: Colors.red,
+                    ),
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -66,6 +74,12 @@ class _LoginPageState extends State<LoginPage> {
                   obscureText: true,
                   decoration: InputDecoration(
                     labelText: 'Password',
+                    labelStyle: TextStyle(
+                      color: asset.colorSecondary,
+                    ),
+                    errorStyle: TextStyle(
+                      color: Colors.red,
+                    ),
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -74,7 +88,22 @@ class _LoginPageState extends State<LoginPage> {
                     return null;
                   },
                 ),
-                SizedBox(height: 30.0),
+                SizedBox(height: 20,),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                  onPressed: () {
+
+                  },
+                  child: Text(
+                    'Forget Password?',
+                    style: TextStyle(
+                      color: Colors.blue, // Adjust the color as needed
+                      ),
+                  ),
+                ),
+              ),     
+                SizedBox(height: 75.0),
                 ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
@@ -87,13 +116,42 @@ class _LoginPageState extends State<LoginPage> {
                       );
                     } 
                   },
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF395886)), // Gunakan nilai ARGB di sini
+                    ),
                   child: Text(
                     'Login',
                     style: TextStyle(
                       fontFamily: 'Poppins',
-                      color: asset.colorSecondary),
+                      color: asset.colorSecondary,
+                      fontWeight: FontWeight.bold,
+                      ),
                     ),
                 ),
+                SizedBox(height: 20.0),
+                Text('Or register with'),
+                SizedBox(height: 20.0),
+                ElevatedButton.icon(
+                  onPressed: () {
+
+                  },
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
+                    ),
+                    icon: Icon(Icons.g_translate),
+                    label: Text('Google'),
+                  ),
+                  SizedBox(height: 10.0),
+                  ElevatedButton.icon(
+                    onPressed: () {
+
+                    },
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+                      ),
+                      icon: Icon(Icons.facebook),
+                      label: Text('Facebook'),
+                    ), // Ganti
               ],
             ),
           ),
