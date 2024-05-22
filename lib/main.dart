@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_application_1/config/asset.dart';
 import 'package:flutter_application_1/home.dart';
 
@@ -112,7 +110,7 @@ class _LoginPageState extends State<LoginPage> {
 
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context)=>HomeScreen())
+                        MaterialPageRoute(builder: (context)=>GameTopUpHomePage())
                       );
                     } 
                   },
@@ -131,31 +129,33 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(height: 20.0),
                 Text('Or register with'),
                 SizedBox(height: 20.0),
-                ElevatedButton.icon(
-                  onPressed: () {
-
-                  },
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
-                    ),
-                    icon: Icon(Icons.g_translate),
-                    label: Text('Google'),
-                  ),
-                  SizedBox(height: 10.0),
-                  ElevatedButton.icon(
-                    onPressed: () {
-
-                    },
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
-                      ),
-                      icon: Icon(Icons.facebook),
-                      label: Text('Facebook'),
-                    ), // Ganti
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildSocialLoginButton('assets/google.jpg'),
+                    SizedBox(width: 20.0),
+                    _buildSocialLoginButton('assets/facebook.jpg'),
+                    SizedBox(width: 20.0),
+                    _buildSocialLoginButton('assets/apple.jpg'),
+                  ],
+                ),
               ],
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildSocialLoginButton(String assetPath) {
+    return GestureDetector(
+      onTap: () {
+        // Handle social login logic here
+      },
+      child: CircleAvatar(
+        radius: 25.0, // Adjust the size of the button
+        backgroundImage: AssetImage(assetPath),
+        backgroundColor: Colors.transparent,
       ),
     );
   }
